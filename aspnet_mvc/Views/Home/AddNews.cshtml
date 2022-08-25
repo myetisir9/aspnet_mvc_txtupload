@@ -9,10 +9,16 @@
 
 @if (Model.ErrorMessage != null)
 {
-
-    <div style=" width:auto;height:40px; color:white; background-color:red; border-radius:15px;padding-left:9px; padding right:9px ">Sevis mesajı: @Model.ErrorMessage  Hata Kodu : @Model.ErrorCode</div>
-    Model.ErrorMessage = null;
-
+    if (Model.ErrorCode == 200)
+    {
+        <div style=" width:auto;height:40px; color:white; background-color:green; border-radius:15px;padding-left:9px; padding right:9px ">Sevis mesajı: @Model.ErrorMessage  Hata Kodu : @Model.ErrorCode</div>
+        Model.ErrorMessage = null;
+    }
+    else
+    {
+        <div style=" width:auto;height:40px; color:white; background-color:red; border-radius:15px;padding-left:9px; padding right:9px ">Sevis mesajı: @Model.ErrorMessage  Hata Kodu : @Model.ErrorCode</div>
+        Model.ErrorMessage = null;
+    }
 }
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -104,23 +110,23 @@
 
 <script>
     document.
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-        $(".w3-button").click(function() {
-            let id = parseInt(this.id)
-            let control = 0;
+            $(".w3-button").click(function() {
+                let id = parseInt(this.id)
+                let control = 0;
 
-            $.post("GetDatabase?take=15&skip=" + (id - 1), function(data) {
-                $("#result").html(data);
+                $.post("GetDatabase?take=15&skip=" + (id - 1), function(data) {
+                    $("#result").html(data);
+                });
+
+
+                //for (let i = id-3; i <= id+3; i++) {
+                //   document.getElementById(i).setAttribute('style','fonts-size:25px;line-height:32px;');
+                //}
+
+
             });
-            
-
-            //for (let i = id-3; i <= id+3; i++) {
-            //   document.getElementById(i).setAttribute('style','fonts-size:25px;line-height:32px;');
-            //}
-            
 
         });
-
-    });
 </script>
