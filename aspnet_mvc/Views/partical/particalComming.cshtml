@@ -1,0 +1,21 @@
+﻿@model ErrorViewModel<ComingTextModel>
+
+@if (Model.Entities != null)
+{
+    foreach (var item in Model.Entities)
+    {
+        <tr>
+
+            <td>@item.RemainingVacation</td>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.EarnedVacation</td>
+            <td>@item.Salary</td>
+            <td>@item.Branch</td>
+            <td>@item.Department</td>
+            <td>@item.YearsWorked</td>
+            <td>@item.WantsToAddVacations</td>
+
+        </tr>
+    }
+}

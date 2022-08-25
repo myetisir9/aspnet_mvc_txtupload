@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "New Page Index1";
+}
+<button style="border-radius:15px; border-color:crimson; background-color:salmon; color:azure" class="btn" onclick="myfunction1()">
+    BUTTON TO SHOW AND HIDE
+</button>
+
+<div class="row text-center" id="tableTopRow">
+    <div class="col-4">Product ID</div>
+    <div class="col-4">Product Name</div>
+    <div class="col-4">Product Quantity</div>
+</div>
+
+<div id="bigtable" style="display:none">
+    @foreach (var item in Model)
+    {
+        <div class="row text-center" @*style="border-top:solid; border-top-color:maroon"*@>
+
+            <div class="col-4" @*style="border-right:solid; border-right-color:dodgerblue "*@>@item.Id</div>
+            <div class="col-4" @*style="border-right:solid; border-right-color:steelblue"*@>@item.Name</div>
+            <div class="col-4">@item.Quantity</div>
+
+        </div>
+    }
+</div>
+
+
+<script>
+    function myfunction1() {
+        if (document.getElementById("bigtable").style.display === 'none') {
+            document.getElementById("bigtable").style.display = 'block';
+        }
+        else {
+            document.getElementById("bigtable").style.display = 'none';
+        }
+    }
+</script>

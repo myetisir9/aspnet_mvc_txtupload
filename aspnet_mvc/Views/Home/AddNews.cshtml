@@ -1,0 +1,126 @@
+﻿@model ErrorViewModel<ComingTextModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+@{
+    ViewData["Title"] = "AddNews";
+}
+
+@if (Model.ErrorMessage != null)
+{
+
+    <div style=" width:auto;height:40px; color:white; background-color:red; border-radius:15px;padding-left:9px; padding right:9px ">Sevis mesajı: @Model.ErrorMessage  Hata Kodu : @Model.ErrorCode</div>
+    Model.ErrorMessage = null;
+
+}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+</script>
+<div>To get the result without an error, your txt file should be in a format like the table header given below.</div>
+@*@using(Html.BeginForm("AddNews", "Home", FormMethod.Post, new{enctype="multipart/form-data"})){
+    <div>
+        @Html.TextBox("file","", new{type="file"})
+        <input type="submit" value="Upload"/>
+        @ViewBag.Message
+    </div>
+}*@
+<div class="container-md">
+    <div class="row">
+
+        <form class="col-xs-12" method="post" action="/Home/AddNews" enctype="multipart/form-data">
+            <div class="form-group d-block row-cols-1">
+                <input type="file" class="form-control" style="max-width:100%; width:fit-content" name="file" />
+            </div>
+            <div class="form-group d-block row-cols-1">
+                <button type="submit" class="btn btn-primary col-xs-12" style="max-width:100%; width:fit-content">Add</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            <form class="col-xs-12" method="post" action="/Home/GetDatabase" enctype="multipart/form-data">
+                <div class="form-group d-block row-cols-1" style="float:right">
+                    <button type="submit" class="btn btn-primary col-xs-12" style="max-width:100%; width:fit-content">Database Get All</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-6">
+
+            <form class="col-xs-12" method="post" action="/Home/AddNewDatabase" enctype="multipart/form-data">
+                <div class="form-group d-block row-cols-1" style="float:right">
+                    <button type="submit" class="btn btn-primary col-xs-12" style="max-width:100%; width:fit-content">Database Transfer</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+<div class="container">
+    <div class="w3-bar w3-border">
+        @for (int i = 1; i <= Model.ErrorCode; i++)
+        {
+            <a href="#" id="@i" class="w3-button w3-border-right">@i</a>
+        }
+    </div>
+
+    <table id="comingtexttable" class="table table-striped table-bordered table-sm text-center d-table" cellspacing="0" width="100%">
+        <thead class="table-success align-middle">
+            <tr>
+                <th class="th-sm">Remaining Vacation</th>
+                <th class="th-sm">Name</th>
+                <th class="th-sm">Surname</th>
+                <th class="th-sm">Earned Vacation</th>
+                <th class="th-sm">Salary</th>
+                <th class="th-sm">Branch</th>
+                <th class="th-sm">Department</th>
+                <th class="th-sm">Years Worked</th>
+                <th class="th-sm">Wants To Add Vacations</th>
+            </tr>
+        </thead>
+        <tbody id="result">
+            @Html.Partial("~/Views/partical/particalComming.cshtml",Model)
+        </tbody>
+
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    document.
+    $(document).ready(function() {
+
+        $(".w3-button").click(function() {
+            let id = parseInt(this.id)
+            let control = 0;
+
+            $.post("GetDatabase?take=15&skip=" + (id - 1), function(data) {
+                $("#result").html(data);
+            });
+            
+
+            //for (let i = id-3; i <= id+3; i++) {
+            //   document.getElementById(i).setAttribute('style','fonts-size:25px;line-height:32px;');
+            //}
+            
+
+        });
+
+    });
+</script>
