@@ -21,30 +21,6 @@ namespace aspnet_mvc.Models
         public bool? WantsToAddVacations { get; set; }
 
 
-        //public ComingTextModel(string vac, string name, string surname, string earnedvac, string salary, string branch, string department, string years, string want)
-        //{
-        //    error = null;
-        //    try
-        //    {
-        //        this.RemainingVacation = int.Parse(vac, NumberStyles.AllowLeadingSign);
-        //        this.Name = name;
-        //        this.Surname = surname;
-        //        this.EarnedVacation = int.Parse(earnedvac);
-        //        this.Salary = int.Parse(salary);
-        //        this.Branch = branch;
-        //        this.Department = department;
-        //        this.YearsWorked = int.Parse(years);
-        //        this.WantsToAddVacations = bool.Parse(want);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        error = e.Message;
-        //    }
-        //}
-
-        //returning string instead of list and try to put it on the screen to check whether function works properly or not
-
-        // public ComingTextModel ReadText() { }
 
     }
 }
